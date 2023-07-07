@@ -4,6 +4,8 @@ pipeline{
     maven 'maven_3.6.3'
   }
   options{
+    timestamps()
+    ansiColor('xterm')
     buildDiscarder(logRotator(numToKeepStr:"8"))
   }
   stages{
@@ -18,6 +20,17 @@ pipeline{
           archiveArtifacts artifacts: "**/target/*.war"
           }
         }
+      }
+    }
+    stage("Artifact exists"){
+        steps{
+          ansiColor("magenta"){
+            echo "####################checking the file in workspace##################"
+          }
+          fileExists '/root/.jenkins/workspace/**/target/*war'
+          ansiColor ("green"){
+            echo "######################file exists###################"
+          }
       }
     }
   }
