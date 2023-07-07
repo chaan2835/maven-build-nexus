@@ -11,6 +11,14 @@ pipeline{
       steps{
           sh "mvn clean package"
       }
+      post {
+        success {
+          ansiColor("blue"){
+          echo "############################ Archiving the Artifacts ########################"
+          archiveArtifacts artifacts: "**/target/*.war"
+          }
+        }
+      }
     }
   }
 }
