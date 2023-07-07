@@ -39,7 +39,7 @@ pipeline{
                  nexusArtifactUploader artifacts: [
       [artifactId: 'favourite-places',
         classifier: '',
-        file: 'target/favourite-places-1.0-SNAPSHOT.war',
+        file: 'target/favourite-places-1.0.war',
         type: 'war']
       ],
       credentialsId: 'nexus',
@@ -48,7 +48,7 @@ pipeline{
       nexusVersion: 'nexus3',
       protocol: 'http',
       repository: 'http://35.154.255.78:8081/repository/fav-places',
-      version: '1.0-SNAPSHOT'
+      version: '1.0'
       }
     }
   }
