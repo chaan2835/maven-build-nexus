@@ -34,7 +34,9 @@ pipeline{
           }
       }
     }
-    nexusArtifactUploader artifacts: [
+   stage("Publish to Nexus Repository Manager") {
+            steps {
+                 nexusArtifactUploader artifacts: [
       [artifactId: 'favourite-places',
         classifier: '',
         file: 'target/favourite-places-1.0-SNAPSHOT.war',
@@ -47,5 +49,7 @@ pipeline{
       protocol: 'http',
       repository: 'http://35.154.255.78:8081/repository/fav-places',
       version: '1.0-SNAPSHOT'
+      }
+    }
   }
 }
