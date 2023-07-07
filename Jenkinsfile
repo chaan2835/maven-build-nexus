@@ -47,7 +47,7 @@ pipeline{
       nexusUrl: '172.31.33.66',
       nexusVersion: 'nexus3',
       protocol: 'http',
-      repository: 'http://35.154.255.78:8081/repository/fav-places',
+      repository: 'http://35.154.255.78:8081/repository/fav-places/',
       version: '1.0'
       }
     }
