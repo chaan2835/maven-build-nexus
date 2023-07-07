@@ -29,7 +29,7 @@ pipeline{
         nexusArtifactUploader artifacts: [
           [artifactId: 'favourite-places',
             classifier: '',
-            file: 'target/favourite-places-1.0.war',
+            file: 'target/favourite-places-1.0.1.war',
             type: 'war']
           ],
           credentialsId: 'nexus',
