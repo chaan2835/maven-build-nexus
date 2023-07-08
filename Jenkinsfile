@@ -24,7 +24,7 @@ pipeline{
       }
     }
 
-   stage("Publish to Nexus Repository Manager") {
+   stage("Uploading Artifact") {
     steps {
         nexusArtifactUploader artifacts:
         [
@@ -36,7 +36,7 @@ pipeline{
         ],
          credentialsId: 'nexus-creds',
          groupId: 'icic',
-         nexusUrl: 'http://15.206.189.45:8081/',
+         nexusUrl: 'http://15.206.189.45:8081',
          nexusVersion: 'nexus3',
          protocol: 'http',
          repository: 'fav-places',
