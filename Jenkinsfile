@@ -24,22 +24,24 @@ pipeline{
       }
     }
 
-  //  stage("Publish to Nexus Repository Manager") {
-  //   steps {
-  //       nexusArtifactUploader artifacts: [
-  //         [artifactId: 'favourite-places',
-  //           classifier: '',
-  //           file: 'target/favourite-places-1.0.1.war',
-  //           type: 'war']
-  //         ],
-  //         credentialsId: 'nexus',
-  //         groupId: 'icic',
-  //         nexusUrl: '172.31.33.66',
-  //         nexusVersion: 'nexus3',
-  //         protocol: 'http',
-  //         repository: 'fav-places',
-  //         version: '1.0.1'
-  //     }
-  //   }
+   stage("Publish to Nexus Repository Manager") {
+    steps {
+        nexusArtifactUploader artifacts:
+        [
+          [ artifactId: 'favourite-places',
+            classifier: '',
+            file: 'target/favourite-places-1.0.1.war',
+            type: 'war'
+          ]
+        ],
+         credentialsId: 'nexus-creds',
+         groupId: 'icic',
+         nexusUrl: 'http://15.206.189.45:8081/',
+         nexusVersion: 'nexus3',
+         protocol: 'http',
+         repository: 'fav-places',
+         version: '1.0.1'
+      }
+    }
   }
 }
