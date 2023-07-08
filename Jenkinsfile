@@ -40,7 +40,7 @@ pipeline{
          nexusVersion: 'nexus3',
          protocol: 'http',
          repository: 'fav-places',
-         version: '1.0.1'
+         version: '1-${BUILD_NUMBER}-SNAPSHOT'
       }
     }
   }
