@@ -30,7 +30,7 @@ pipeline{
         [
           [ artifactId: 'favourite-places',
             classifier: '',
-            file: 'target/favourite-places-1.0.1.war',
+            file: 'target/favourite-places-1-SNAPSHOT.war',
             type: 'war'
           ]
         ],
