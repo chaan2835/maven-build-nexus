@@ -28,7 +28,14 @@ pipeline{
         script{
           def pom = readMavenPom file: 'pom.xml'
           def artifactId = pom.artifactId
+          def groupId = pom.groupId
+          def version = pom.version
+          def packaging = pom.packaging
+          echo "#####################################################################"
           echo "ArtifactId:${artifactId}"
+          echo "Groupid:${groupId}"
+          echo "version:${version}"
+          echo "packaging:${packaging}"
         }
       }
     }
