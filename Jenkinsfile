@@ -33,26 +33,26 @@ pipeline{
           def version = pom.version
           def packaging = pom.packaging
           echo "#####################################################################"
-          echo "ArtifactId:${artifactId}"
-          echo "Groupid:${groupId}"
-          echo "version:${version}"
-          echo "packaging:${packaging}"
+          echo "ArtifactId: ${artifactId}"
+          echo "Groupid: ${groupId}"
+          echo "version: ${version}"
+          echo "packaging: ${packaging}"
           echo "######################################################################"
             nexusArtifactUploader artifacts:
         [
-          [ artifactId: '${artifactId}',
+          [ artifactId: "${artifactId}",
             classifier: '',
-            file: 'target/${artifactId}-${version}.war',
-            type: '${packaging}'
+            file: "target/${artifactId}-${version}.war",
+            type: "${packaging}"
           ]
         ],
          credentialsId: 'nexus-creds',
-         groupId: '${groupId}',
+         groupId: "${groupId}",
          nexusUrl: '43.204.112.58:8081',
          nexusVersion: 'nexus3',
          protocol: 'http',
          repository: 'fav-places',
-         version: '${version}'
+         version: "${version}"
         }
       }
     }
