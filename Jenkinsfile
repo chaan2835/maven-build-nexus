@@ -45,14 +45,14 @@ pipeline{
     steps {
         nexusArtifactUploader artifacts:
         [
-          [ artifactId: '${artifactId}',
+          [ artifactId: '${pom.artifactId}',
             classifier: '',
-            file: 'target/${artifactId}-${version}.${packaging}',
-            type: '${packaging}'
+            file: 'target/${pom.artifactId}-${pom.version}.${pom.packaging}',
+            type: '${pom.packaging}'
           ]
         ],
          credentialsId: 'nexus-creds',
-         groupId: '${groupId}',
+         groupId: '${pom.groupId}',
          nexusUrl: '43.204.112.58:8081',
          nexusVersion: 'nexus3',
          protocol: 'http',
