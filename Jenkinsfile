@@ -45,14 +45,14 @@ pipeline{
     steps {
         nexusArtifactUploader artifacts:
         [
-          [ artifactId: 'favourite-places',
+          [ artifactId: '${artifactId}',
             classifier: '',
-            file: 'target/favourite-places-1-SNAPSHOT.war',
-            type: 'war'
+            file: 'target/*.war',
+            type: '${packaging}'
           ]
         ],
          credentialsId: 'nexus-creds',
-         groupId: 'icic',
+         groupId: '${groupId}',
          nexusUrl: '43.204.112.58:8081',
          nexusVersion: 'nexus3',
          protocol: 'http',
