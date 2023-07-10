@@ -23,6 +23,15 @@ pipeline{
         }
       }
     }
+    stage("Reading pom contents"){
+      steps{
+        script{
+          def pom = readMavenPom file: 'pom.xml'
+          def artifactId = pom.artifactId
+          echo "ArtifactId:${artifactId}"
+        }
+      }
+    }
 
    stage("Uploading Artifact") {
     steps {
