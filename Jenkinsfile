@@ -23,10 +23,11 @@ pipeline{
         }
       }
     }
-    stage("Reading pom contents"){
-      steps{
-        script{
-          def pom = readMavenPom file: 'pom.xml'
+
+   stage("Uploading Artifact") {
+    steps {
+      script{
+        def pom = readMavenPom file: 'pom.xml'
           def artifactId = pom.artifactId
           def groupId = pom.groupId
           def version = pom.version
@@ -37,27 +38,22 @@ pipeline{
           echo "version:${version}"
           echo "packaging:${packaging}"
           echo "######################################################################"
-        }
-      }
-    }
-
-   stage("Uploading Artifact") {
-    steps {
-        nexusArtifactUploader artifacts:
+            nexusArtifactUploader artifacts:
         [
-          [ artifactId: '${pom.artifactId}',
+          [ artifactId: '${artifactId}',
             classifier: '',
-            file: 'target/favourite-places-${pom.version}.war',
-            type: '${pom.packaging}'
+            file: 'target/${artifactId}-${version}.war',
+            type: '${packaging}'
           ]
         ],
          credentialsId: 'nexus-creds',
-         groupId: '${pom.groupId}',
+         groupId: '${groupId}',
          nexusUrl: '43.204.112.58:8081',
          nexusVersion: 'nexus3',
          protocol: 'http',
          repository: 'fav-places',
-         version: '${pom.version}'
+         version: '${version}'
+        }
       }
     }
   }
