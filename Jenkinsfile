@@ -47,7 +47,7 @@ pipeline{
         [
           [ artifactId: '${artifactId}',
             classifier: '',
-            file: 'target/*.war',
+            file: 'target/${artifactId}-${version}.${packaging}',
             type: '${packaging}'
           ]
         ],
