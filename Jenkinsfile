@@ -36,6 +36,7 @@ pipeline{
           echo "Groupid:${groupId}"
           echo "version:${version}"
           echo "packaging:${packaging}"
+          echo "######################################################################"
         }
       }
     }
