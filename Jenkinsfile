@@ -47,7 +47,7 @@ pipeline{
         [
           [ artifactId: '${pom.artifactId}',
             classifier: '',
-            file: 'target/${pom.artifactId}-${pom.version}.${pom.packaging}',
+            file: 'target/favourite-places-${pom.version}.war',
             type: '${pom.packaging}'
           ]
         ],
