@@ -70,6 +70,7 @@ pipeline{
             sh "aws s3 mb s3://jenkins-s3-uploader"
             sh "aws s3 cp **/target/*.war s3://jenkins-s3-uploader"
         }
+      }
     }
   }
 }
