@@ -58,17 +58,18 @@ pipeline{
     }
     stage ("s3-upload"){
       steps{
-        try{
-          withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+        withCredentials([
+            [
+                $class: 'AmazonWebServicesCredentialsBinding',
+                accessKeyVariable: 'AWS_ACCESS_KEY',
+                secretKeyVariable: 'AWS_SECRET_KEY',
+                credentialsId: 'aws-creds'
+            ]
+        ]) {
             sh "aws s3 ls"
             sh "aws s3 mb s3://jenkins-s3-uploader"
             sh "aws s3 cp **/target/*.war s3://jenkins-s3-uploader"
         }
-      }
-      catch (err){
-      sh "echo error sending artifact to s3 bucket"
-        }
-      }
     }
   }
 }
