@@ -58,18 +58,26 @@ pipeline{
     }
     stage ("s3-upload"){
       steps{
-        withCredentials([
-            [
-                $class: 'AmazonWebServicesCredentialsBinding',
-                accessKeyVariable: 'AWS_ACCESS_KEY',
-                secretKeyVariable: 'AWS_SECRET_KEY',
-                credentialsId: 'aws-creds'
-            ]
-        ]) {
-            sh "aws s3 ls"
-            sh "aws s3 mb s3://jenkins-s3-uploader"
-            sh "aws s3 cp **/target/*.war s3://jenkins-s3-uploader"
-        }
+        s3Upload consoleLogLevel: 'INFO',
+                 dontSetBuildResultOnFailure: false,
+                 dontWaitForConcurrentBuildCompletion: false,
+                 entries: [
+                    [bucket: 'jenkins-s3-uploader',
+                     excludedFile: '',
+                     flatten: false,
+                     gzipFiles: false,
+                     keepForever: false,
+                     managedArtifacts: false,
+                     noUploadOnFailure: false,
+                     selectedRegion: 'ap-south-1',
+                     showDirectlyInBrowser: false,
+                     sourceFile: '**/target/*.war',
+                     storageClass: 'STANDARD',
+                     uploadFromSlave: false,
+                     useServerSideEncryption: false]
+                    ], pluginFailureResultConstraint: 'FAILURE',
+                       profileName: 'jenkins-s3-uploader',
+                       userMetadata: []
       }
     }
   }
