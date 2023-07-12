@@ -48,7 +48,7 @@ pipeline{
         ],
          credentialsId: 'nexus-creds',
          groupId: "${groupId}",
-         nexusUrl: '43.204.112.58:8081',
+         nexusUrl: '3.110.51.162:8081',
          nexusVersion: 'nexus3',
          protocol: 'http',
          repository: 'fav-places',
